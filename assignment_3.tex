@@ -1,0 +1,1357 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={assignment\_3},
+  pdfauthor={Saba Naji},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{assignment\_3}
+\author{Saba Naji}
+\date{}
+
+\begin{document}
+\maketitle
+
+\textbf{Part 1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#install.packages("imager")}
+\FunctionTok{library}\NormalTok{(imager)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'imager' was built under R version 4.5.2
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: magrittr
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'imager'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:magrittr':
+## 
+##     add
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     convolve, spectrum
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:graphics':
+## 
+##     frame
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:base':
+## 
+##     save.image
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{image\_dir }\OtherTok{\textless{}{-}} \StringTok{"data"}
+\NormalTok{image\_height }\OtherTok{\textless{}{-}} \DecValTok{64}
+\NormalTok{image\_width }\OtherTok{\textless{}{-}} \DecValTok{64}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{image\_files }\OtherTok{\textless{}{-}} \FunctionTok{list.files}\NormalTok{(}
+\NormalTok{  image\_dir,}
+  \AttributeTok{pattern =} \StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.(jpg|jpeg|png|bmp)$"}\NormalTok{,}
+  \AttributeTok{ignore.case =} \ConstantTok{TRUE}\NormalTok{,}
+  \AttributeTok{full.names =} \ConstantTok{TRUE}
+\NormalTok{)}
+
+\NormalTok{image\_num }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(image\_files)}
+
+\NormalTok{read\_to\_vector }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(path, }\AttributeTok{H =}\NormalTok{ image\_height, }\AttributeTok{W =}\NormalTok{ image\_width)\{}
+\NormalTok{  im }\OtherTok{\textless{}{-}} \FunctionTok{load.image}\NormalTok{(path)}
+\NormalTok{  im }\OtherTok{\textless{}{-}} \FunctionTok{grayscale}\NormalTok{(im)}
+\NormalTok{  im }\OtherTok{\textless{}{-}}\NormalTok{ imager}\SpecialCharTok{::}\FunctionTok{resize}\NormalTok{(im, }\AttributeTok{size\_x =}\NormalTok{ W, }\AttributeTok{size\_y =}\NormalTok{ H)}
+  \FunctionTok{as.numeric}\NormalTok{(im)}
+\NormalTok{\}}
+
+\NormalTok{image\_matrix\_list }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(image\_files, read\_to\_vector)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{do.call}\NormalTok{(rbind, image\_matrix\_list)}
+\FunctionTok{dim}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  124 4096
+\end{verbatim}
+
+This code loads all images, converts them to grayscale, resizes them to
+64×64, flattens them, and stacks them into a matrix with 124 images and
+4096 pixels per image.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pca\_full }\OtherTok{\textless{}{-}} \FunctionTok{prcomp}\NormalTok{(x,}
+                   \AttributeTok{center =} \ConstantTok{TRUE}\NormalTok{,}
+                   \AttributeTok{scale. =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{var\_explained }\OtherTok{\textless{}{-}}\NormalTok{ pca\_full}\SpecialCharTok{$}\NormalTok{sdev}\SpecialCharTok{\^{}}\DecValTok{2}
+\NormalTok{var\_ratio }\OtherTok{\textless{}{-}}\NormalTok{ var\_explained }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(var\_explained)}
+\NormalTok{cumvar }\OtherTok{\textless{}{-}} \FunctionTok{cumsum}\NormalTok{(var\_ratio)}
+\end{Highlighting}
+\end{Shaded}
+
+This code performs a full PCA on the image matrix X. The data are
+centered but not scaled, which keeps the original pixel intensity
+ranges. After PCA is computed, the code extracts the variance of each
+principal component by squaring their standard deviation. It then
+converts these values into variance ratios, showing how much of the
+total data variance each component explains.Finally, it computes the
+cumulative variance, which indicates how many components are needed to
+retain a chosen percentage of the information in the original images.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}
+\NormalTok{  var\_ratio,}
+  \AttributeTok{type =} \StringTok{"b"}\NormalTok{,}
+  \AttributeTok{xlab =} \StringTok{"Principal Component Number"}\NormalTok{,}
+  \AttributeTok{ylab =} \StringTok{"Variance Explained by Each Component"}\NormalTok{,}
+  \AttributeTok{main =} \StringTok{"Scree Plot {-} PCA"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{assignment_3_files/figure-latex/Scree plot-1.pdf}}
+The scree plot displays the amount of variance explained by each
+principal component (PC) in the PCA model. The curve shows a sharp
+decline after the first few components, indicating that PC1 and a small
+number of early components capture most of the meaningful variance in
+the images. After approximately the 5th--10th component, the plot
+becomes almost flat, meaning that additional components contribute very
+little new information.
+
+Overall, the plot demonstrates that the dataset has a strong
+low-dimensional structure and that a small number of principal
+components is sufficient for representing the essential information,
+while the remaining components mostly reflect noise.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}
+\NormalTok{  cumvar,}
+  \AttributeTok{type =} \StringTok{"b"}\NormalTok{,}
+  \AttributeTok{xlab =} \StringTok{"Number of Components"}\NormalTok{,}
+  \AttributeTok{ylab =} \StringTok{"Cumulative Explained Variance"}\NormalTok{,}
+  \AttributeTok{main =} \StringTok{"Cumulative Explained Variance"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{assignment_3_files/figure-latex/Cumulative Variance Plot-1.pdf}}
+The cumulative explained variance curve shows that the first principal
+components capture most of the information in the dataset. The curve
+rises steeply for the first 20--30 components, indicating that these
+components contain the dominant structure of the images. After roughly
+50 components, the curve becomes much flatter, meaning that additional
+components contribute little new information and mostly represent noise
+or fine-grained variations. Based on this behavior, selecting a value of
+k in the range of 30--50 provides an effective balance between
+dimensionality reduction and information retention.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{which}\NormalTok{(cumvar }\SpecialCharTok{\textgreater{}=} \FloatTok{0.90}\NormalTok{)[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 76
+\end{verbatim}
+
+I chose k = 76 principal components. The cumulative explained variance
+plot shows that with 76 components, the PCA model reaches about 90\% of
+the total variance. After this point, the curve becomes almost flat,
+meaning additional components add very little new information. This
+makes 76 a good cutoff: it keeps most of the important structure in the
+images while avoiding unnecessary extra components.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{k\_medium }\OtherTok{\textless{}{-}} \DecValTok{76}
+\NormalTok{k\_small }\OtherTok{\textless{}{-}} \DecValTok{20}
+\NormalTok{k\_large }\OtherTok{\textless{}{-}} \DecValTok{110}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reconstruct\_with\_k }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(pca\_obj, k)\{}
+\NormalTok{  scores\_k }\OtherTok{\textless{}{-}}\NormalTok{ pca\_obj}\SpecialCharTok{$}\NormalTok{x[, }\DecValTok{1}\SpecialCharTok{:}\NormalTok{k]}
+  
+\NormalTok{  rotation\_k }\OtherTok{\textless{}{-}}\NormalTok{ pca\_obj}\SpecialCharTok{$}\NormalTok{rotation[, }\DecValTok{1}\SpecialCharTok{:}\NormalTok{k]}
+\NormalTok{  x\_hat\_centered }\OtherTok{\textless{}{-}}\NormalTok{ scores\_k }\SpecialCharTok{\%*\%} \FunctionTok{t}\NormalTok{(rotation\_k)}
+\NormalTok{  x\_hat }\OtherTok{\textless{}{-}} \FunctionTok{sweep}\NormalTok{(x\_hat\_centered, }\DecValTok{2}\NormalTok{, pca\_obj}\SpecialCharTok{$}\NormalTok{center, }\StringTok{"+"}\NormalTok{)}
+  
+\NormalTok{  x\_hat}
+\NormalTok{\}}
+
+\NormalTok{x\_small  }\OtherTok{\textless{}{-}} \FunctionTok{reconstruct\_with\_k}\NormalTok{(pca\_full, k\_small)}
+\NormalTok{x\_medium }\OtherTok{\textless{}{-}} \FunctionTok{reconstruct\_with\_k}\NormalTok{(pca\_full, k\_medium)}
+\NormalTok{x\_large  }\OtherTok{\textless{}{-}} \FunctionTok{reconstruct\_with\_k}\NormalTok{(pca\_full, k\_large)}
+\end{Highlighting}
+\end{Shaded}
+
+The function reconstruct\_with\_k() rebuilds the images using only the
+first k PCA components. It takes the reduced PCA scores and loadings,
+reconstructs an approximation of the original data, and then adds back
+the mean of the images. This gives a version of each image using only
+limited PCA information.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{show\_image }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(vec, }\AttributeTok{title =} \StringTok{""}\NormalTok{) \{}
+\NormalTok{  im }\OtherTok{\textless{}{-}} \FunctionTok{as.cimg}\NormalTok{(vec, }\AttributeTok{x =}\NormalTok{ image\_width, }\AttributeTok{y =}\NormalTok{ image\_height, }\AttributeTok{cc =} \DecValTok{1}\NormalTok{)}
+  \FunctionTok{plot}\NormalTok{(im, }\AttributeTok{axes =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{main =}\NormalTok{ title)}
+\NormalTok{\}}
+
+\NormalTok{idx }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{50}\NormalTok{)}
+
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\FunctionTok{length}\NormalTok{(idx), }\DecValTok{4}\NormalTok{))}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ idx) \{}
+  \FunctionTok{show\_image}\NormalTok{(x[i, ],}\AttributeTok{title =} \StringTok{"Original"}\NormalTok{)}
+  \FunctionTok{show\_image}\NormalTok{(x\_small[i, ],}\AttributeTok{title =} \FunctionTok{paste}\NormalTok{(}\StringTok{"k ="}\NormalTok{, k\_small))}
+  \FunctionTok{show\_image}\NormalTok{(x\_medium[i, ],}\AttributeTok{title =} \FunctionTok{paste}\NormalTok{(}\StringTok{"k ="}\NormalTok{, k\_medium))}
+  \FunctionTok{show\_image}\NormalTok{(x\_large[i, ],}\AttributeTok{title =} \FunctionTok{paste}\NormalTok{(}\StringTok{"k ="}\NormalTok{, k\_large))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{assignment_3_files/figure-latex/Reconstruct Images with Different k Values-1.pdf}}
+
+The code compares each original image with reconstructions made using k
+= 20, k = 76, and k = 110 PCA components. - With 20 components, the
+images are very blurry and lose most details. - With 76 components, the
+main structures and features are clear and much closer to the original.
+- With 110 components, the images are almost identical to the originals.
+
+\textbf{Part 2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{file\_names }\OtherTok{\textless{}{-}} \FunctionTok{basename}\NormalTok{(image\_files)}
+
+\NormalTok{labels }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}
+  \FunctionTok{grepl}\NormalTok{(}\StringTok{"\^{}c"}\NormalTok{,file\_names, }\AttributeTok{ignore.case =} \ConstantTok{TRUE}\NormalTok{),}
+  \StringTok{"Chelsea"}\NormalTok{,}
+  \StringTok{"ManUtd"}\NormalTok{)}
+
+\NormalTok{labels }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(labels)}
+\FunctionTok{table}\NormalTok{(labels)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## labels
+## Chelsea  ManUtd 
+##      65      59
+\end{verbatim}
+
+The output shows that the dataset contains 65 Chelsea images and 59
+Manchester United images, and these labels are used in all subsequent
+training and evaluation procedures.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{k\_feat }\OtherTok{\textless{}{-}}\NormalTok{ k\_medium}
+\NormalTok{Z\_all }\OtherTok{\textless{}{-}}\NormalTok{ pca\_full}\SpecialCharTok{$}\NormalTok{x[, }\DecValTok{1}\SpecialCharTok{:}\NormalTok{k\_feat]}
+
+\FunctionTok{dim}\NormalTok{(Z\_all)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 124  76
+\end{verbatim}
+
+The code extracts the first 76 PCA features for all images. The output
+124 76 means the dataset now contains 124 images, each represented by 76
+reduced features instead of the original 4096 pixels. This compact
+feature set will be used for classification.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{train\_idx }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(Z\_all), }\FloatTok{0.8} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(Z\_all))}
+
+\NormalTok{X\_train }\OtherTok{\textless{}{-}}\NormalTok{ Z\_all[train\_idx, ]}
+\NormalTok{X\_test  }\OtherTok{\textless{}{-}}\NormalTok{ Z\_all[}\SpecialCharTok{{-}}\NormalTok{train\_idx, ]}
+\NormalTok{y\_train }\OtherTok{\textless{}{-}}\NormalTok{ labels[train\_idx]}
+\NormalTok{y\_test  }\OtherTok{\textless{}{-}}\NormalTok{ labels[}\SpecialCharTok{{-}}\NormalTok{train\_idx]}
+\end{Highlighting}
+\end{Shaded}
+
+This code randomly selects 80\% of the data for training and keeps the
+remaining 20\% for testing. The PCA features (Z\_all) are split into
+X\_train and X\_test, and the corresponding class labels are split into
+y\_train and y\_test. This ensures that the models are trained on one
+portion of the data and evaluated fairly on unseen samples.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{metrics\_binary }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(y\_true, y\_pred, }\AttributeTok{positive =} \StringTok{"ManUtd"}\NormalTok{) \{}
+\NormalTok{  y\_true }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(y\_true)}
+\NormalTok{  y\_pred }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(y\_pred, }\AttributeTok{levels =} \FunctionTok{levels}\NormalTok{(y\_true))}
+  
+\NormalTok{  cm }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(y\_true, y\_pred)}
+  
+\NormalTok{  TP }\OtherTok{\textless{}{-}}\NormalTok{ cm[positive, positive]}
+\NormalTok{  FP }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(cm[, positive]) }\SpecialCharTok{{-}}\NormalTok{ TP}
+\NormalTok{  FN }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(cm[positive, ]) }\SpecialCharTok{{-}}\NormalTok{ TP}
+\NormalTok{  TN }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(cm) }\SpecialCharTok{{-}}\NormalTok{ TP }\SpecialCharTok{{-}}\NormalTok{ FP }\SpecialCharTok{{-}}\NormalTok{ FN}
+  
+\NormalTok{  precision }\OtherTok{\textless{}{-}}\NormalTok{ TP }\SpecialCharTok{/}\NormalTok{ (TP }\SpecialCharTok{+}\NormalTok{ FP)}
+\NormalTok{  recall    }\OtherTok{\textless{}{-}}\NormalTok{ TP }\SpecialCharTok{/}\NormalTok{ (TP }\SpecialCharTok{+}\NormalTok{ FN)}
+\NormalTok{  f1        }\OtherTok{\textless{}{-}} \DecValTok{2} \SpecialCharTok{*}\NormalTok{ precision }\SpecialCharTok{*}\NormalTok{ recall }\SpecialCharTok{/}\NormalTok{ (precision }\SpecialCharTok{+}\NormalTok{ recall)}
+\NormalTok{  accuracy  }\OtherTok{\textless{}{-}}\NormalTok{ (TP }\SpecialCharTok{+}\NormalTok{ TN) }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(cm)}
+  
+  \FunctionTok{list}\NormalTok{(}
+    \AttributeTok{precision =}\NormalTok{ precision,}
+    \AttributeTok{recall    =}\NormalTok{ recall,}
+    \AttributeTok{f1        =}\NormalTok{ f1,}
+    \AttributeTok{accuracy  =}\NormalTok{ accuracy,}
+    \AttributeTok{confusion =}\NormalTok{ cm}
+\NormalTok{  )}
+
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+This code defines a function that evaluates a binary classification
+model. It compares the true labels with the predicted labels and
+calculates four key performance measures: precision, recall, F1-score,
+and accuracy. It also creates a confusion matrix showing how many
+predictions were correct or incorrect. The function treats ``ManUtd'' as
+the positive class when computing these metrics.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(class)}
+
+\NormalTok{Kfold  }\OtherTok{\textless{}{-}} \DecValTok{5}
+\NormalTok{k\_grid }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{11}\NormalTok{)}
+
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{fold\_id }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{Kfold, }\AttributeTok{length.out =} \FunctionTok{length}\NormalTok{(y\_train)))}
+
+\NormalTok{cv\_f1\_knn }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(k\_grid, }\ControlFlowTok{function}\NormalTok{(k) \{}
+\NormalTok{  f1\_per\_fold }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{Kfold, }\ControlFlowTok{function}\NormalTok{(fold) \{}
+\NormalTok{    val }\OtherTok{\textless{}{-}}\NormalTok{ fold\_id }\SpecialCharTok{==}\NormalTok{ fold}
+\NormalTok{    tr  }\OtherTok{\textless{}{-}} \SpecialCharTok{!}\NormalTok{val}
+    
+\NormalTok{    pred\_val }\OtherTok{\textless{}{-}} \FunctionTok{knn}\NormalTok{(}
+      \AttributeTok{train =}\NormalTok{ X\_train[tr, , }\AttributeTok{drop =} \ConstantTok{FALSE}\NormalTok{],}
+      \AttributeTok{test  =}\NormalTok{ X\_train[val, , }\AttributeTok{drop =} \ConstantTok{FALSE}\NormalTok{],}
+      \AttributeTok{cl    =}\NormalTok{ y\_train[tr],}
+      \AttributeTok{k     =}\NormalTok{ k}
+\NormalTok{    )}
+    
+    \FunctionTok{metrics\_binary}\NormalTok{(y\_train[val], pred\_val, }\AttributeTok{positive =} \StringTok{"ManUtd"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{f1}
+\NormalTok{  \})}
+  
+  \FunctionTok{mean}\NormalTok{(f1\_per\_fold, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{\})}
+
+\NormalTok{cv\_results\_knn }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{k =}\NormalTok{ k\_grid,}
+  \AttributeTok{mean\_f1 =}\NormalTok{ cv\_f1\_knn}
+\NormalTok{)}
+
+\NormalTok{cv\_results\_knn}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    k   mean_f1
+## 1  1 0.4866525
+## 2  3 0.5521242
+## 3  5 0.6423497
+## 4  7 0.6572078
+## 5  9 0.6227090
+## 6 11 0.5992674
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{best\_k }\OtherTok{\textless{}{-}}\NormalTok{ k\_grid[}\FunctionTok{which.max}\NormalTok{(cv\_f1\_knn)]}
+\NormalTok{best\_k}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+I used 5-fold cross-validation to choose the best value of k for the KNN
+classifier. The F1-score was computed for each tested value of k (1, 3,
+5, 7, 9, 11).
+
+The highest average F1-score was obtained at k = 7, meaning this value
+gives the best overall performance on the training data. Therefore, k =
+7 was selected as the optimal number of neighbors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knn\_test\_pred }\OtherTok{\textless{}{-}} \FunctionTok{knn}\NormalTok{(}
+  \AttributeTok{train =}\NormalTok{ X\_train,}
+  \AttributeTok{test  =}\NormalTok{ X\_test,}
+  \AttributeTok{cl    =}\NormalTok{ y\_train,}
+  \AttributeTok{k     =}\NormalTok{ best\_k}
+\NormalTok{)}
+
+\NormalTok{metrics\_knn\_test }\OtherTok{\textless{}{-}} \FunctionTok{metrics\_binary}\NormalTok{(y\_test, knn\_test\_pred, }\AttributeTok{positive =} \StringTok{"ManUtd"}\NormalTok{)}
+
+\NormalTok{res }\OtherTok{\textless{}{-}}\NormalTok{ metrics\_knn\_test  }
+
+\NormalTok{result\_table }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Metric =} \FunctionTok{c}\NormalTok{(}\StringTok{"Accuracy"}\NormalTok{, }\StringTok{"Precision"}\NormalTok{, }\StringTok{"Recall"}\NormalTok{, }\StringTok{"F1 Score"}\NormalTok{),}
+  \AttributeTok{Value  =} \FunctionTok{c}\NormalTok{(res}\SpecialCharTok{$}\NormalTok{accuracy, res}\SpecialCharTok{$}\NormalTok{precision, res}\SpecialCharTok{$}\NormalTok{recall, res}\SpecialCharTok{$}\NormalTok{f1)}
+\NormalTok{)}
+
+\NormalTok{result\_table}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Metric     Value
+## 1  Accuracy 0.5600000
+## 2 Precision 0.4705882
+## 3    Recall 0.8000000
+## 4  F1 Score 0.5925926
+\end{verbatim}
+
+Based on these results, the accuracy of the model is 0.56, with a
+precision of 0.47, a recall of 0.80, and an F1 score of 0.59. Overall,
+the model performs reasonably well in detecting Manchester United images
+(high recall) but makes a notable number of incorrect predictions,
+resulting in lower precision.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df\_train }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(X\_train)}
+\NormalTok{df\_train}\SpecialCharTok{$}\NormalTok{label }\OtherTok{\textless{}{-}}\NormalTok{ y\_train}
+
+\NormalTok{kfold }\OtherTok{\textless{}{-}} \DecValTok{5}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{fold\_id\_glm }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{Kfold, }\AttributeTok{length.out =} \FunctionTok{length}\NormalTok{(y\_train)))}
+\NormalTok{f1\_glm }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{Kfold, }\ControlFlowTok{function}\NormalTok{(fold) \{}
+\NormalTok{  val }\OtherTok{\textless{}{-}}\NormalTok{ fold\_id\_glm }\SpecialCharTok{==}\NormalTok{ fold}
+\NormalTok{  tr  }\OtherTok{\textless{}{-}} \SpecialCharTok{!}\NormalTok{val}
+  
+\NormalTok{  glm\_fit }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(label }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data =}\NormalTok{ df\_train[tr, ], }\AttributeTok{family =}\NormalTok{ binomial)}
+  
+\NormalTok{  prob\_val }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(glm\_fit, }\AttributeTok{newdata =}\NormalTok{ df\_train[val, ], }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
+\NormalTok{  pred\_val }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(prob\_val }\SpecialCharTok{\textgreater{}=} \FloatTok{0.5}\NormalTok{, }\StringTok{"ManUtd"}\NormalTok{, }\StringTok{"Chelsea"}\NormalTok{)}
+\NormalTok{  pred\_val }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(pred\_val, }\AttributeTok{levels =} \FunctionTok{levels}\NormalTok{(y\_train))}
+  
+  \FunctionTok{metrics\_binary}\NormalTok{(y\_train[val], pred\_val, }\AttributeTok{positive =} \StringTok{"ManUtd"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{f1}
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean\_f1\_glm\_cv }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(f1\_glm, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{mean\_f1\_glm\_cv}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5410909
+\end{verbatim}
+
+To evaluate the performance of the logistic regression model, I used
+5-fold cross-validation on the training set. In each fold, the model was
+trained on four-fifths of the data and evaluated on the remaining
+one-fifth using the F1 score for the ManUtd class. The vector f1\_glm
+stores the F1 scores from all five folds, and their average is computed
+as mean\_f1\_glm\_cv. The resulting mean F1 score is 0.54, which
+summarizes the overall cross-validated performance of the logistic
+regression model on the training data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{glm\_fit\_full }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(label }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data =}\NormalTok{ df\_train, }\AttributeTok{family =}\NormalTok{ binomial)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df\_test }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(X\_test)}
+\NormalTok{prob\_test\_glm }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(glm\_fit\_full, }\AttributeTok{newdata =}\NormalTok{ df\_test, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
+
+\NormalTok{pred\_test\_glm }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(prob\_test\_glm }\SpecialCharTok{\textgreater{}=} \FloatTok{0.5}\NormalTok{, }\StringTok{"ManUtd"}\NormalTok{, }\StringTok{"Chelsea"}\NormalTok{)}
+\NormalTok{pred\_test\_glm }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(pred\_test\_glm, }\AttributeTok{levels =} \FunctionTok{levels}\NormalTok{(y\_train))}
+
+\NormalTok{metrics\_glm\_test }\OtherTok{\textless{}{-}} \FunctionTok{metrics\_binary}\NormalTok{(y\_test, pred\_test\_glm, }\AttributeTok{positive =} \StringTok{"ManUtd"}\NormalTok{)}
+
+\NormalTok{res\_glm }\OtherTok{\textless{}{-}}\NormalTok{ metrics\_glm\_test   }
+
+
+\NormalTok{glm\_results\_table }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Metric =} \FunctionTok{c}\NormalTok{(}\StringTok{"Accuracy"}\NormalTok{, }\StringTok{"Precision"}\NormalTok{, }\StringTok{"Recall"}\NormalTok{, }\StringTok{"F1 Score"}\NormalTok{),}
+  \AttributeTok{Value  =} \FunctionTok{c}\NormalTok{(res\_glm}\SpecialCharTok{$}\NormalTok{accuracy, res\_glm}\SpecialCharTok{$}\NormalTok{precision, res\_glm}\SpecialCharTok{$}\NormalTok{recall, res\_glm}\SpecialCharTok{$}\NormalTok{f1)}
+\NormalTok{)}
+
+\NormalTok{res\_glm}\SpecialCharTok{$}\NormalTok{confusion}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          y_pred
+## y_true    Chelsea ManUtd
+##   Chelsea       6      9
+##   ManUtd        4      6
+\end{verbatim}
+
+A logistic regression model was trained on the PCA features of the
+training set and then evaluated on the test set. The confusion matrix
+shows that 6 Chelsea images were correctly classified, while 9 Chelsea
+images were incorrectly predicted as ManUtd. For the ManUtd class, 6
+images were correctly classified and 4 were misclassified as Chelsea.
+This indicates that the logistic regression model has moderate
+performance, with a noticeable number of misclassifications for both
+classes, and does not clearly outperform the KNN model in this setting.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(glmnet)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'glmnet' was built under R version 4.5.2
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: Matrix
+\end{verbatim}
+
+\begin{verbatim}
+## Loaded glmnet 4.1-10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{positive\_class }\OtherTok{\textless{}{-}} \StringTok{"ManUtd"}
+\NormalTok{y\_train\_bin }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(y\_train }\SpecialCharTok{==}\NormalTok{ positive\_class, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+
+\NormalTok{X\_train\_mat }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(X\_train)}
+\NormalTok{X\_test\_mat  }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(X\_test)}
+
+\NormalTok{fit\_glmnet\_model }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(alpha\_value) \{}
+  \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{  cv\_fit }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(}
+    \AttributeTok{x =}\NormalTok{ X\_train\_mat,}
+    \AttributeTok{y =}\NormalTok{ y\_train\_bin,}
+    \AttributeTok{family =} \StringTok{"binomial"}\NormalTok{,}
+    \AttributeTok{alpha =}\NormalTok{ alpha\_value,}
+    \AttributeTok{nfolds =} \DecValTok{5}
+\NormalTok{  )}
+  
+\NormalTok{  prob\_test }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(cv\_fit, }\AttributeTok{newx =}\NormalTok{ X\_test\_mat, }\AttributeTok{s =} \StringTok{"lambda.min"}\NormalTok{, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
+\NormalTok{  pred\_test }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(prob\_test }\SpecialCharTok{\textgreater{}=} \FloatTok{0.5}\NormalTok{, positive\_class, }\StringTok{"Chelsea"}\NormalTok{)}
+\NormalTok{  pred\_test }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(pred\_test, }\AttributeTok{levels =} \FunctionTok{levels}\NormalTok{(y\_train))}
+  
+  \FunctionTok{metrics\_binary}\NormalTok{(y\_test, pred\_test, }\AttributeTok{positive =}\NormalTok{ positive\_class)}
+\NormalTok{\}}
+
+\NormalTok{metrics\_l1\_test }\OtherTok{\textless{}{-}} \FunctionTok{fit\_glmnet\_model}\NormalTok{(}\AttributeTok{alpha\_value =} \DecValTok{1}\NormalTok{) }
+
+\NormalTok{metrics\_l2\_test }\OtherTok{\textless{}{-}} \FunctionTok{fit\_glmnet\_model}\NormalTok{(}\AttributeTok{alpha\_value =} \DecValTok{0}\NormalTok{) }
+
+
+\NormalTok{l1\_l2\_results }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Model   =} \FunctionTok{c}\NormalTok{(}\StringTok{"Logistic L1 (Lasso)"}\NormalTok{, }\StringTok{"Logistic L2 (Ridge)"}\NormalTok{),}
+  \AttributeTok{Accuracy =} \FunctionTok{c}\NormalTok{(metrics\_l1\_test}\SpecialCharTok{$}\NormalTok{accuracy,}
+\NormalTok{               metrics\_l2\_test}\SpecialCharTok{$}\NormalTok{accuracy)}
+\NormalTok{)}
+
+\NormalTok{l1\_l2\_results}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 Model Accuracy
+## 1 Logistic L1 (Lasso)     0.68
+## 2 Logistic L2 (Ridge)     0.56
+\end{verbatim}
+
+The L1 (Lasso) and L2 (Ridge) logistic regression models were trained
+using 5-fold cross-validation with glmnet. After selecting the optimal
+value of λ, both models were evaluated on the test set. The results show
+that the L1 model achieves an accuracy of 0.68, whereas the L2 model
+achieves an accuracy of 0.56. This indicates that the L1-regularized
+model performs better in this dataset, likely because it selects more
+informative features and reduces noise introduced by irrelevant PCA
+components.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{metrics\_to\_row }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(m, name) \{}
+  \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{Model     =}\NormalTok{ name,}
+    \AttributeTok{Accuracy  =}\NormalTok{ m}\SpecialCharTok{$}\NormalTok{accuracy,}
+    \AttributeTok{Precision =}\NormalTok{ m}\SpecialCharTok{$}\NormalTok{precision,}
+    \AttributeTok{Recall    =}\NormalTok{ m}\SpecialCharTok{$}\NormalTok{recall,}
+    \AttributeTok{F1        =}\NormalTok{ m}\SpecialCharTok{$}\NormalTok{f1}
+\NormalTok{  )}
+\NormalTok{\}}
+
+\NormalTok{results\_table }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(}
+  \FunctionTok{metrics\_to\_row}\NormalTok{(metrics\_knn\_test, }\StringTok{"KNN"}\NormalTok{),}
+  \FunctionTok{metrics\_to\_row}\NormalTok{(metrics\_glm\_test, }\StringTok{"Logistic (no reg)"}\NormalTok{),}
+  \FunctionTok{metrics\_to\_row}\NormalTok{(metrics\_l1\_test,  }\StringTok{"Logistic L1"}\NormalTok{),}
+  \FunctionTok{metrics\_to\_row}\NormalTok{(metrics\_l2\_test,  }\StringTok{"Logistic L2"}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{results\_table}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               Model Accuracy Precision Recall        F1
+## 1               KNN     0.56 0.4705882    0.8 0.5925926
+## 2 Logistic (no reg)     0.48 0.4000000    0.6 0.4800000
+## 3       Logistic L1     0.68 0.5714286    0.8 0.6666667
+## 4       Logistic L2     0.56 0.4666667    0.7 0.5600000
+\end{verbatim}
+
+To compare the different classification methods, I collected the
+evaluation metrics for all four models (KNN, logistic regression without
+regularization, logistic regression with L1 regularization, and logistic
+regression with L2 regularization) into a single results table. The
+helper function metrics\_to\_row() takes the output of the
+metrics\_binary() function for a model and its name, and returns a
+one-row data frame containing the model name and its Accuracy,
+Precision, Recall, and F1 score. These rows are then combined with
+rbind() to form results\_table, which summarizes the performance of all
+models.
+
+The table shows that the Logistic L1 model achieves the best overall
+performance, with an accuracy of 0.68 and an F1 score of 0.67,
+outperforming KNN, logistic regression without regularization, and
+Logistic L2. KNN and Logistic L2 have similar performance (accuracy
+around 0.56), while logistic regression without regularization performs
+the worst with an accuracy of 0.48. Overall, these results suggest that
+adding L1 regularization to logistic regression improves the model's
+ability to generalize on this dataset, likely by selecting more
+informative PCA-based features and reducing overfitting.
+
+\textbf{Part 3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{make\_nonlinear\_features }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(Z, }\AttributeTok{num\_interact =} \DecValTok{5}\NormalTok{)\{}
+\NormalTok{  Z }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(Z)}
+\NormalTok{  p }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(Z)}
+  \FunctionTok{names}\NormalTok{(Z) }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\StringTok{"PC"}\NormalTok{, }\FunctionTok{seq\_len}\NormalTok{(p))}
+  
+\NormalTok{  base }\OtherTok{\textless{}{-}}\NormalTok{ Z}
+  
+\NormalTok{  sq }\OtherTok{\textless{}{-}}\NormalTok{ base}\SpecialCharTok{\^{}}\DecValTok{2}
+  \FunctionTok{names}\NormalTok{(sq) }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\FunctionTok{names}\NormalTok{(base), }\StringTok{"\_sq"}\NormalTok{)}
+  
+\NormalTok{  lg }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(}\FunctionTok{abs}\NormalTok{(base) }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)}
+  \FunctionTok{names}\NormalTok{(lg) }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\FunctionTok{names}\NormalTok{(base), }\StringTok{"\_log"}\NormalTok{)}
+  
+\NormalTok{  m }\OtherTok{\textless{}{-}} \FunctionTok{min}\NormalTok{(num\_interact, p)}
+\NormalTok{  pairs }\OtherTok{\textless{}{-}} \FunctionTok{combn}\NormalTok{(m, }\DecValTok{2}\NormalTok{)}
+\NormalTok{  inter}\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(}\FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{ncol}\NormalTok{(pairs)), }\ControlFlowTok{function}\NormalTok{(k)\{}
+\NormalTok{    i }\OtherTok{\textless{}{-}}\NormalTok{ pairs[}\DecValTok{1}\NormalTok{,k]}
+\NormalTok{    j }\OtherTok{\textless{}{-}}\NormalTok{ pairs[}\DecValTok{2}\NormalTok{,k]}
+\NormalTok{    base[[i]] }\SpecialCharTok{*}\NormalTok{ base[[j]]}
+\NormalTok{  \})}
+\NormalTok{  inter }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(inter)}
+  \FunctionTok{names}\NormalTok{(inter) }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\StringTok{"PC"}\NormalTok{, pairs[}\DecValTok{1}\NormalTok{, ], }\StringTok{"\_x\_PC"}\NormalTok{, pairs[}\DecValTok{2}\NormalTok{, ])}
+  
+  \FunctionTok{cbind}\NormalTok{(base, sq, lg, inter)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+The function make\_nonlinear\_features() expands the PCA feature set by
+creating several nonlinear transformations. It starts with the original
+PCA components, then adds their squared values, log-transformed versions
+(log(\textbar PC\textbar{} + 1)), and interaction terms between the
+first few principal components. These additional features allow the
+classifiers to capture more complex patterns than with PCA features
+alone. The function returns a single data frame containing all original
+and nonlinear features.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Z\_nl\_all }\OtherTok{\textless{}{-}} \FunctionTok{make\_nonlinear\_features}\NormalTok{(Z\_all)}
+
+\NormalTok{Xnl\_train }\OtherTok{\textless{}{-}}\NormalTok{ Z\_nl\_all[train\_idx, ]}
+\NormalTok{Xnl\_test  }\OtherTok{\textless{}{-}}\NormalTok{ Z\_nl\_all[}\SpecialCharTok{{-}}\NormalTok{train\_idx, ]}
+
+\NormalTok{y\_train }\OtherTok{\textless{}{-}}\NormalTok{ labels[train\_idx]}
+\NormalTok{y\_test  }\OtherTok{\textless{}{-}}\NormalTok{ labels[}\SpecialCharTok{{-}}\NormalTok{train\_idx]}
+\end{Highlighting}
+\end{Shaded}
+
+The nonlinear features are first created from the PCA components,
+producing an expanded feature set that includes squared terms, log
+transformations, and interaction features. Using the same train and test
+indices as before, this expanded dataset is then divided into a training
+set and a test set. The class labels are split in the same way. This
+ensures that the models in Part 3 are evaluated on the same images as in
+Part 2, but now using a richer nonlinear feature space.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(class)}
+
+\NormalTok{Kfold  }\OtherTok{\textless{}{-}} \DecValTok{5}
+\NormalTok{k\_grid }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{11}\NormalTok{)}
+
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{fold\_id }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{Kfold, }\AttributeTok{length.out =} \FunctionTok{length}\NormalTok{(y\_train)))}
+
+\NormalTok{cv\_f1\_knn\_nl }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(k\_grid, }\ControlFlowTok{function}\NormalTok{(k) \{}
+\NormalTok{  f1\_per\_fold }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{Kfold, }\ControlFlowTok{function}\NormalTok{(fold) \{}
+\NormalTok{    val }\OtherTok{\textless{}{-}}\NormalTok{ fold\_id }\SpecialCharTok{==}\NormalTok{ fold}
+\NormalTok{    tr  }\OtherTok{\textless{}{-}} \SpecialCharTok{!}\NormalTok{val}
+    
+\NormalTok{    pred\_val }\OtherTok{\textless{}{-}} \FunctionTok{knn}\NormalTok{(}
+      \AttributeTok{train =}\NormalTok{ Xnl\_train[tr, , }\AttributeTok{drop =} \ConstantTok{FALSE}\NormalTok{],}
+      \AttributeTok{test  =}\NormalTok{ Xnl\_train[val, , }\AttributeTok{drop =} \ConstantTok{FALSE}\NormalTok{],}
+      \AttributeTok{cl    =}\NormalTok{ y\_train[tr],}
+      \AttributeTok{k     =}\NormalTok{ k}
+\NormalTok{    )}
+    
+    \FunctionTok{metrics\_binary}\NormalTok{(y\_train[val], pred\_val, }\AttributeTok{positive =} \StringTok{"ManUtd"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{f1}
+\NormalTok{  \})}
+  
+  \FunctionTok{mean}\NormalTok{(f1\_per\_fold, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{\})}
+
+\NormalTok{best\_k\_nl }\OtherTok{\textless{}{-}}\NormalTok{ k\_grid[}\FunctionTok{which.max}\NormalTok{(cv\_f1\_knn\_nl)]}
+\NormalTok{best\_k\_nl}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+This code uses 5-fold cross-validation to choose the best number of
+neighbours (k) for the KNN classifier when using the nonlinear feature
+set. For each value in k\_grid (1, 3, 5, 7, 9, 11), the model is trained
+and evaluated on the training data, and the mean F1-score across the 5
+folds is computed. Last line selects the k with the highest average
+F1-score. The output means that k = 7 gives the best cross-validation
+performance for KNN with the nonlinear features.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knn\_nl\_test\_pred }\OtherTok{\textless{}{-}} \FunctionTok{knn}\NormalTok{(}
+  \AttributeTok{train =}\NormalTok{ Xnl\_train,}
+  \AttributeTok{test  =}\NormalTok{ Xnl\_test,}
+  \AttributeTok{cl    =}\NormalTok{ y\_train,}
+  \AttributeTok{k     =}\NormalTok{ best\_k\_nl}
+\NormalTok{)}
+
+\NormalTok{metrics\_knn\_nl\_test }\OtherTok{\textless{}{-}} \FunctionTok{metrics\_binary}\NormalTok{(y\_test, knn\_nl\_test\_pred, }\AttributeTok{positive =} \StringTok{"ManUtd"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df\_train\_nl }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(Xnl\_train, }\AttributeTok{label =}\NormalTok{ y\_train)}
+
+\NormalTok{Kfold }\OtherTok{\textless{}{-}} \DecValTok{5}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{fold\_id }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{Kfold, }\AttributeTok{length.out =} \FunctionTok{nrow}\NormalTok{(df\_train\_nl)))}
+
+\NormalTok{f1\_glm\_nl }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{Kfold, }\ControlFlowTok{function}\NormalTok{(k) \{}
+\NormalTok{  val\_idx }\OtherTok{\textless{}{-}}\NormalTok{ fold\_id }\SpecialCharTok{==}\NormalTok{ k}
+\NormalTok{  tr\_idx  }\OtherTok{\textless{}{-}} \SpecialCharTok{!}\NormalTok{val\_idx}
+  
+\NormalTok{  glm\_fit }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(label }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data =}\NormalTok{ df\_train\_nl[tr\_idx, ], }\AttributeTok{family =}\NormalTok{ binomial)}
+  
+\NormalTok{  prob\_val }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(glm\_fit, }\AttributeTok{newdata =}\NormalTok{ df\_train\_nl[val\_idx, ], }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
+\NormalTok{  pred\_val }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}
+    \FunctionTok{ifelse}\NormalTok{(prob\_val }\SpecialCharTok{\textgreater{}=} \FloatTok{0.5}\NormalTok{, }\StringTok{"ManUtd"}\NormalTok{, }\StringTok{"Chelsea"}\NormalTok{),}
+    \AttributeTok{levels =} \FunctionTok{levels}\NormalTok{(y\_train)}
+\NormalTok{  )}
+  
+  \FunctionTok{metrics\_binary}\NormalTok{(y\_train[val\_idx], pred\_val, }\AttributeTok{positive =} \StringTok{"ManUtd"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{f1}
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in predict.lm(object, newdata, se.fit, scale = 1, type = if (type == :
+## prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases
+## Warning in predict.lm(object, newdata, se.fit, scale = 1, type = if (type == :
+## prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases
+## Warning in predict.lm(object, newdata, se.fit, scale = 1, type = if (type == :
+## prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases
+## Warning in predict.lm(object, newdata, se.fit, scale = 1, type = if (type == :
+## prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases
+## Warning in predict.lm(object, newdata, se.fit, scale = 1, type = if (type == :
+## prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean\_f1\_glm\_nl\_cv }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(f1\_glm\_nl, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{mean\_f1\_glm\_nl\_cv}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6022222
+\end{verbatim}
+
+This code evaluates a logistic regression model trained on the nonlinear
+feature set using 5-fold cross-validation. In each fold, the model is
+trained on 80\% of the training data and tested on the remaining 20\%.
+The F1-score is computed for each fold, and these values are averaged to
+measure the model's overall performance.
+
+The final output shows that the mean cross-validated F1-score is 0.60,
+indicating that logistic regression performs better with nonlinear
+features than with PCA features alone.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{glm\_nl\_fit\_full }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(label }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data =}\NormalTok{ df\_train\_nl, }\AttributeTok{family =}\NormalTok{ binomial)}
+
+\NormalTok{df\_test\_nl }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(Xnl\_test)}
+\NormalTok{prob\_test\_glm\_nl }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(glm\_nl\_fit\_full, }\AttributeTok{newdata =}\NormalTok{ df\_test\_nl, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in predict.lm(object, newdata, se.fit, scale = 1, type = if (type == :
+## prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pred\_test\_glm\_nl }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}
+  \FunctionTok{ifelse}\NormalTok{(prob\_test\_glm\_nl }\SpecialCharTok{\textgreater{}=} \FloatTok{0.5}\NormalTok{, }\StringTok{"ManUtd"}\NormalTok{, }\StringTok{"Chelsea"}\NormalTok{),}
+  \AttributeTok{levels =} \FunctionTok{levels}\NormalTok{(y\_train)}
+\NormalTok{)}
+
+\NormalTok{metrics\_glm\_nl\_test }\OtherTok{\textless{}{-}} \FunctionTok{metrics\_binary}\NormalTok{(y\_test, pred\_test\_glm\_nl, }\AttributeTok{positive =} \StringTok{"ManUtd"}\NormalTok{)}
+\NormalTok{metrics\_glm\_nl\_test}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $precision
+## [1] 0.3571429
+## 
+## $recall
+## [1] 0.5
+## 
+## $f1
+## [1] 0.4166667
+## 
+## $accuracy
+## [1] 0.44
+## 
+## $confusion
+##          y_pred
+## y_true    Chelsea ManUtd
+##   Chelsea       6      9
+##   ManUtd        5      5
+\end{verbatim}
+
+The logistic regression model trained with the nonlinear feature set was
+evaluated on the test data. The confusion matrix shows that the model
+correctly classified six Chelsea images and five Manchester United
+images, while misclassifying nine Chelsea and five ManUtd samples. Based
+on these predictions, the model achieved an accuracy of 0.44, a
+precision of 0.36, a recall of 0.50, and an F1 score of 0.42. These
+results indicate that, even with nonlinear features, logistic regression
+performs relatively poorly and does not capture the class structure as
+effectively as the other nonlinear models.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(glmnet)}
+
+\NormalTok{positive\_class }\OtherTok{\textless{}{-}} \StringTok{"ManUtd"}
+\NormalTok{y\_train\_bin }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(y\_train }\SpecialCharTok{==}\NormalTok{ positive\_class, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+
+\NormalTok{Xnl\_train\_mat }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(Xnl\_train)}
+\NormalTok{Xnl\_test\_mat  }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(Xnl\_test)}
+
+\NormalTok{fit\_glmnet\_nl }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(alpha\_value) \{}
+  \FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{  cv\_fit }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(}
+    \AttributeTok{x =}\NormalTok{ Xnl\_train\_mat,}
+    \AttributeTok{y =}\NormalTok{ y\_train\_bin,}
+    \AttributeTok{family =} \StringTok{"binomial"}\NormalTok{,}
+    \AttributeTok{alpha =}\NormalTok{ alpha\_value,}
+    \AttributeTok{nfolds =} \DecValTok{5}
+\NormalTok{  )}
+  
+\NormalTok{  prob\_test }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(cv\_fit, }\AttributeTok{newx =}\NormalTok{ Xnl\_test\_mat, }\AttributeTok{s =} \StringTok{"lambda.min"}\NormalTok{, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
+\NormalTok{  pred\_test }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(prob\_test }\SpecialCharTok{\textgreater{}=} \FloatTok{0.5}\NormalTok{, positive\_class, }\StringTok{"Chelsea"}\NormalTok{)}
+\NormalTok{  pred\_test }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(pred\_test, }\AttributeTok{levels =} \FunctionTok{levels}\NormalTok{(y\_train))}
+  
+  \FunctionTok{metrics\_binary}\NormalTok{(y\_test, pred\_test, }\AttributeTok{positive =}\NormalTok{ positive\_class)}
+\NormalTok{\}}
+
+\NormalTok{metrics\_l1\_nl\_test }\OtherTok{\textless{}{-}} \FunctionTok{fit\_glmnet\_nl}\NormalTok{(}\AttributeTok{alpha\_value =} \DecValTok{1}\NormalTok{)  }
+\NormalTok{metrics\_l2\_nl\_test }\OtherTok{\textless{}{-}} \FunctionTok{fit\_glmnet\_nl}\NormalTok{(}\AttributeTok{alpha\_value =} \DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+This code fits L1 (Lasso) and L2 (Ridge) logistic regression models
+using the nonlinear feature set. It uses 5-fold cross-validation to
+choose the best value of λ, then predicts the test labels and evaluates
+performance with accuracy, precision, recall, and F1 score. The results
+stored in metrics\_l1\_nl\_test and metrics\_l2\_nl\_test show how each
+regularized model performs with the expanded nonlinear features.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{results\_table\_nl }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(}
+  \FunctionTok{metrics\_to\_row}\NormalTok{(metrics\_knn\_nl\_test, }\StringTok{"KNN (nonlinear)"}\NormalTok{),}
+  \FunctionTok{metrics\_to\_row}\NormalTok{(metrics\_glm\_nl\_test, }\StringTok{"Logistic (nonlinear)"}\NormalTok{),}
+  \FunctionTok{metrics\_to\_row}\NormalTok{(metrics\_l1\_nl\_test,  }\StringTok{"Logistic L1 (nonlinear)"}\NormalTok{),}
+  \FunctionTok{metrics\_to\_row}\NormalTok{(metrics\_l2\_nl\_test,  }\StringTok{"Logistic L2 (nonlinear)"}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{results\_table\_nl}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                     Model Accuracy Precision Recall        F1
+## 1         KNN (nonlinear)     0.40 0.3684211    0.7 0.4827586
+## 2    Logistic (nonlinear)     0.44 0.3571429    0.5 0.4166667
+## 3 Logistic L1 (nonlinear)     0.56 0.4666667    0.7 0.5600000
+## 4 Logistic L2 (nonlinear)     0.64 1.0000000    0.1 0.1818182
+\end{verbatim}
+
+The nonlinear feature results show that only the regularized logistic
+models benefit meaningfully from the expanded feature set. Logistic L1
+improves compared to the PCA-only version, reaching higher accuracy and
+a better-balanced F1 score. Logistic L2 achieves the highest accuracy,
+though its very low recall limits its usefulness. In contrast, KNN and
+standard logistic regression perform worse than in the PCA-only setting.
+Overall, nonlinear transformations help some models---mainly the
+regularized logistic ones---while offering little or no improvement for
+the others.
+
+\textbf{Part 4 -- Final Model Selection \& Error Analysis}
+
+Across all models evaluated in Parts 2 and 3, the logistic regression
+model with L1 regularization (Lasso) trained on the first 76 PCA
+components is selected as the best overall classifier.
+
+For the PCA-based models, the Logistic L1 model achieves:
+
+\begin{itemize}
+\tightlist
+\item
+  Accuracy ≈ 0.68\\
+\item
+  Precision ≈ 0.57\\
+\item
+  Recall ≈ 0.80\\
+\item
+  F1-score ≈ 0.67
+\end{itemize}
+
+This makes it the only model that simultaneously maintains relatively
+high accuracy, balanced precision--recall, and the highest F1-score. KNN
+and unregularized logistic regression clearly underperform compared to
+this model, and the Logistic L2 model on PCA features does not provide
+any consistent improvement.
+
+Although some nonlinear models (based on the expanded feature set) reach
+competitive or slightly higher accuracy in certain cases, they either
+sacrifice recall dramatically or suffer from worse overall F1 scores. In
+particular, the nonlinear Logistic L2 model attains a higher accuracy
+but an extremely low recall and F1 score, meaning that it effectively
+fails to detect one of the classes. Therefore, the Logistic L1 (Lasso)
+model using 76 PCA components is selected as the final and
+best-performing classifier.
+
+Below, I perform a more detailed error analysis of this model by
+examining its false positive (FP) and false negative (FN) predictions on
+the held-out test set, and by interpreting visual patterns that may
+explain these misclassifications.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(glmnet)}
+
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{cv\_l1\_pca }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(}
+\AttributeTok{x       =}\NormalTok{ X\_train\_mat,}
+\AttributeTok{y       =}\NormalTok{ y\_train\_bin,}
+\AttributeTok{family  =} \StringTok{"binomial"}\NormalTok{,}
+\AttributeTok{alpha   =} \DecValTok{1}\NormalTok{,    }
+\AttributeTok{nfolds  =} \DecValTok{5}
+\NormalTok{)}
+
+\NormalTok{prob\_test\_l1 }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(}
+\NormalTok{cv\_l1\_pca,}
+\AttributeTok{newx =}\NormalTok{ X\_test\_mat,}
+\AttributeTok{s    =} \StringTok{"lambda.min"}\NormalTok{,}
+\AttributeTok{type =} \StringTok{"response"}
+\NormalTok{)[, }\DecValTok{1}\NormalTok{]}
+
+
+\NormalTok{pred\_test\_l1\_chr }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(prob\_test\_l1 }\SpecialCharTok{\textgreater{}=} \FloatTok{0.5}\NormalTok{, positive\_class, }\StringTok{"Chelsea"}\NormalTok{)}
+\NormalTok{pred\_test\_l1 }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(pred\_test\_l1\_chr, }\AttributeTok{levels =} \FunctionTok{levels}\NormalTok{(y\_test))}
+
+\NormalTok{metrics\_l1\_test }\OtherTok{\textless{}{-}} \FunctionTok{metrics\_binary}\NormalTok{(y\_test, pred\_test\_l1, }\AttributeTok{positive =}\NormalTok{ positive\_class)}
+
+\NormalTok{metrics\_l1\_test}\SpecialCharTok{$}\NormalTok{confusion}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          y_pred
+## y_true    Chelsea ManUtd
+##   Chelsea       9      6
+##   ManUtd        2      8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{metrics\_l1\_test}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $precision
+## [1] 0.5714286
+## 
+## $recall
+## [1] 0.8
+## 
+## $f1
+## [1] 0.6666667
+## 
+## $accuracy
+## [1] 0.68
+## 
+## $confusion
+##          y_pred
+## y_true    Chelsea ManUtd
+##   Chelsea       9      6
+##   ManUtd        2      8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{is\_fp\_test }\OtherTok{\textless{}{-}}\NormalTok{ (pred\_test\_l1 }\SpecialCharTok{==} \StringTok{"ManUtd"}\NormalTok{) }\SpecialCharTok{\&}\NormalTok{ (y\_test }\SpecialCharTok{==} \StringTok{"Chelsea"}\NormalTok{)}
+
+\NormalTok{is\_fn\_test }\OtherTok{\textless{}{-}}\NormalTok{ (pred\_test\_l1 }\SpecialCharTok{==} \StringTok{"Chelsea"}\NormalTok{) }\SpecialCharTok{\&}\NormalTok{ (y\_test }\SpecialCharTok{==} \StringTok{"ManUtd"}\NormalTok{)}
+
+\NormalTok{fp\_test\_idx }\OtherTok{\textless{}{-}} \FunctionTok{which}\NormalTok{(is\_fp\_test)}
+\NormalTok{fn\_test\_idx }\OtherTok{\textless{}{-}} \FunctionTok{which}\NormalTok{(is\_fn\_test)}
+
+\FunctionTok{length}\NormalTok{(fp\_test\_idx)  }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{length}\NormalTok{(fn\_test\_idx) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{test\_ids }\OtherTok{\textless{}{-}} \FunctionTok{setdiff}\NormalTok{(}\FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(x)), train\_idx)}
+
+\NormalTok{orig\_fp\_idx }\OtherTok{\textless{}{-}}\NormalTok{ test\_ids[fp\_test\_idx]}
+\NormalTok{orig\_fn\_idx }\OtherTok{\textless{}{-}}\NormalTok{ test\_ids[fn\_test\_idx]}
+
+\NormalTok{orig\_fp\_idx}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10 11 18 33 56 62
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{orig\_fn\_idx}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 113 116
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{show\_n\_fp }\OtherTok{\textless{}{-}} \FunctionTok{min}\NormalTok{(}\DecValTok{3}\NormalTok{, }\FunctionTok{length}\NormalTok{(orig\_fp\_idx))}
+\NormalTok{show\_n\_fn }\OtherTok{\textless{}{-}} \FunctionTok{min}\NormalTok{(}\DecValTok{3}\NormalTok{, }\FunctionTok{length}\NormalTok{(orig\_fn\_idx))}
+
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\FunctionTok{max}\NormalTok{(show\_n\_fp, show\_n\_fn)))}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \FunctionTok{seq\_len}\NormalTok{(show\_n\_fp)) \{}
+\NormalTok{idx }\OtherTok{\textless{}{-}}\NormalTok{ orig\_fp\_idx[i]}
+\NormalTok{true\_lab }\OtherTok{\textless{}{-}}\NormalTok{ labels[idx]}
+\NormalTok{pred\_lab }\OtherTok{\textless{}{-}} \StringTok{"ManUtd"}
+\FunctionTok{show\_image}\NormalTok{(}
+\NormalTok{x[idx, ],}
+\AttributeTok{title =} \FunctionTok{paste0}\NormalTok{(}
+\StringTok{"False Positive}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+\StringTok{"True: "}\NormalTok{, true\_lab, }\StringTok{"  Pred: "}\NormalTok{, pred\_lab,}
+\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Image index: "}\NormalTok{, idx}
+\NormalTok{)}
+\NormalTok{)}
+\NormalTok{\}}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \FunctionTok{seq\_len}\NormalTok{(show\_n\_fn)) \{}
+\NormalTok{idx }\OtherTok{\textless{}{-}}\NormalTok{ orig\_fn\_idx[i]}
+\NormalTok{true\_lab }\OtherTok{\textless{}{-}}\NormalTok{ labels[idx]}
+\NormalTok{pred\_lab }\OtherTok{\textless{}{-}} \StringTok{"Chelsea"}
+\FunctionTok{show\_image}\NormalTok{(}
+\NormalTok{x[idx, ],}
+\AttributeTok{title =} \FunctionTok{paste0}\NormalTok{(}
+\StringTok{"False Negative}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+\StringTok{"True: "}\NormalTok{, true\_lab, }\StringTok{"  Pred: "}\NormalTok{, pred\_lab,}
+\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Image index: "}\NormalTok{, idx}
+\NormalTok{)}
+\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{assignment_3_files/figure-latex/unnamed-chunk-4-1.pdf}}
+Using the selected Logistic L1 model, I examined the predictions on the
+held-out test set and identified the false positive (FP) and false
+negative (FN) cases. False positives are images where the model predicts
+``Manchester United'' but the true label is ``Chelsea'', while false
+negatives are the opposite. Several representative FP and FN images are
+displayed in the figures above, with titles indicating the true and
+predicted labels.
+
+In many false positives, the Chelsea players appear in poses or contexts
+that are visually similar to Manchester United images in the training
+set -- for example, frontal full-body poses, similar background
+structure, or crowd patterns. Because the model operates on 64×64
+grayscale images and PCA features, it does not have access to jersey
+color information and instead relies on coarse shape, edges, and
+textures. When these structural cues resemble those of typical
+Manchester United images, the model tends to misclassify Chelsea as
+Manchester United.
+
+False negatives often occur in the opposite situation: Manchester United
+images in which the player is partially occluded, very small in the
+frame, or in an unusual pose. In these cases, the overall silhouette and
+local gradients deviate from the main patterns learned from the training
+data, and the model falls back to predicting the more ``Chelsea-like''
+structures. Noisy or low-contrast images, as well as extreme lighting,
+also contribute to such mistakes.
+
+Overall, the misclassifications reveal several limitations of the chosen
+model and feature pipeline:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Limited PCA representation.} Although 76 principal components
+  capture around 90\% of the total variance, some of the left-out
+  components may still contain discriminative information, especially
+  for subtle differences between the two clubs' visual patterns.
+  Reducing dimensionality too aggressively can blur out fine details
+  that would help distinguish similar poses or backgrounds.
+\item
+  \textbf{Loss of color information.} All images are converted to
+  grayscale before PCA. As a result, the model cannot use jersey colors
+  (e.g., red vs.~blue) or other color cues that are highly informative
+  for distinguishing football teams. This forces the classifier to rely
+  only on shape and texture, which are more ambiguous.
+\item
+  \textbf{Limited nonlinearity.} Logistic regression with L1
+  regularization is still a linear model in the PCA feature space. Even
+  though some nonlinear transformations were explored in Part 3, the
+  current approach cannot fully capture complex, high-order structures
+  in the images, such as detailed logos, fine-grained textures, or
+  subtle context cues.
+\item
+  \textbf{Data and resolution constraints.} The images are relatively
+  low resolution (64×64) and the dataset contains only 124 examples (65
+  Chelsea and 59 Manchester United). This makes it difficult for a
+  simple model to generalize to less common camera viewpoints, unusual
+  poses, or heavily occluded players, which often appear among the FPs
+  and FNs.
+\end{enumerate}
+
+To reduce such errors, more advanced methods could be applied.
+Convolutional neural networks (CNNs) trained directly on
+higher-resolution RGB images would be able to exploit both local
+patterns and color information, and data augmentation could expose the
+model to a wider variety of poses and lighting conditions. Transfer
+learning from a pre-trained image classification network would likely
+give a large improvement over hand-crafted PCA features. In addition,
+using class-balanced loss functions or focusing on hard examples (e.g.,
+via hard negative mining) could help the model allocate more capacity to
+the most ambiguous Chelsea vs.~Manchester United cases.
+
+In summary, while the Logistic L1 model on PCA features performs best
+among all models considered in this assignment, its false positives and
+false negatives highlight the inherent limitations of linear classifiers
+on compressed grayscale representations. More expressive models and
+richer input representations would be needed to further reduce these
+classification errors.
+
+\end{document}
