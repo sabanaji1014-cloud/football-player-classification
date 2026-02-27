@@ -1,63 +1,54 @@
+# ⚽ Football Image Classification
+### PCA + KNN + Logistic Regression
 
-Football Image Classification (PCA + KNN + Logistic Regression)
+This repository contains a small machine learning project for **binary image classification** of football players from two teams:
 
-This repository contains a small machine learning project for binary image classification of football players from two teams:
-
-Manchester United
-
-Chelsea
+- Manchester United
+- Chelsea
 
 The project demonstrates a complete machine learning workflow including:
 
-Image preprocessing
+- Image preprocessing
+- Dimensionality reduction using **Principal Component Analysis (PCA)**
+- Classification using:
+  - K-Nearest Neighbors (KNN)
+  - Logistic Regression
+  - Logistic Regression with **L1 (Lasso)** regularization
+  - Logistic Regression with **L2 (Ridge)** regularization
+- Model comparison and evaluation
+- Error analysis
 
-Dimensionality reduction using Principal Component Analysis (PCA)
+---
 
-Classification using:
-
-K-Nearest Neighbors (KNN)
-
-Logistic Regression
-
-Logistic Regression with L1 (Lasso) regularization
-
-Logistic Regression with L2 (Ridge) regularization
-
-Model comparison and evaluation
-
-Error analysis
-
-Dataset
+# 📂 Dataset
 
 The dataset consists of images of football players.
 
-Images are processed as follows:
+Each image is processed as follows:
 
-Converted to grayscale
+- Converted to **grayscale**
+- Resized to **64 × 64**
+- Flattened into a feature vector
 
-Resized to 64 × 64
-
-Flattened into feature vectors
-
-Labeling rule
+### Labeling rule
 
 File names determine the class:
 
-Files starting with c → Chelsea
+- Files starting with **c** → Chelsea
+- Other files → Manchester United
 
-Other files → Manchester United
+### Supported formats
 
-Supported formats:
+- `.jpg`
+- `.jpeg`
+- `.png`
+- `.bmp`
 
-jpg
+---
 
-jpeg
+## 🗂 Project Structure
 
-png
-
-bmp
-
-Project Structure
+```text
 football-image-classification
 │
 ├── data/        # image dataset
@@ -65,59 +56,63 @@ football-image-classification
 ├── report/      # report files
 ├── notebooks/   # optional notebooks
 └── src/         # runnable scripts
-Requirements
+```
 
-R version 4.0 or higher
+## ⚙️ Requirements
 
-Required packages:
+R version **4.0 or higher**
 
-imager
-class
-glmnet
-rmarkdown
-knitr
+Install required packages in R:
 
-Install them in R:
-
+```r
 install.packages(c("imager","class","glmnet","rmarkdown","knitr"))
-How to Run the Project
+```
 
-Clone the repository:
+---
 
+# ▶️ How to Run the Project
+
+### 1. Clone the repository
+
+```bash
 git clone https://github.com/sabanaji1014-cloud/football-player-classification.git
 cd football-player-classification
+```
 
-Run the analysis:
+### 2. Run the analysis
 
+```bash
 Rscript src/run_pipeline.R
+```
 
-Or render the report:
+### 3. Render the report (optional)
 
+```bash
 R -e "rmarkdown::render('report/football_classifier_report.Rmd')"
-Method Overview
+```
 
-Load and preprocess images
+---
 
-Apply PCA to reduce dimensionality
+# 🧠 Method Overview
 
-Train multiple classifiers
+The project follows these steps:
 
-Evaluate using:
+1. Load and preprocess images  
+2. Apply PCA for dimensionality reduction  
+3. Train multiple classifiers  
+4. Evaluate models using:
 
-Accuracy
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- Confusion Matrix
 
-Precision
+5. Compare model performance and analyze errors
 
-Recall
+---
 
-F1 Score
+# 👩‍💻 Author
 
-Confusion Matrix
+**Saba Naji**
 
-Compare model performance and analyze errors
-
-Author
-
-Saba Naji
-
-Statistical Machine Learning Project
